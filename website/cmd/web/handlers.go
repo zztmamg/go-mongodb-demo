@@ -3,6 +3,7 @@ package main
 import (
 	"html/template"
 	"net/http"
+	"path/filepath"
 )
 
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
@@ -22,4 +23,9 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 
 	err = template.Execute(w, nil)
 
+}
+
+func (app *application) static(dir string) http.Handler {
+	dirCleaned := filepath.Clean(dir)
+	return http.StripPrefix("/static/", http.FileServer(http.Dir(dirCleaned)))
 }

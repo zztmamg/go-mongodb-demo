@@ -1,5 +1,5 @@
-module github.com/zztmamg/go-mongodb-demo/website
+module go-mongodb-demo/website
 
-go 1.22.6
+go 1.17
 
 require github.com/gorilla/mux v1.8.1

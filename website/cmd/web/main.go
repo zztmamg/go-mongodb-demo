@@ -17,7 +17,7 @@ type application struct {
 func main() {
 	// 获取命令行参数
 	serverAddr := flag.String("serverAddr", "", "HTTP服务器网络地址")
-	serverPort := flag.String("serverPort", "8080", "HTTP服务器网络端口")
+	serverPort := flag.Int("serverPort", 8000, "HTTP服务器网络端口")
 	flag.Parse()
 
 	// 初始化日志
@@ -30,7 +30,7 @@ func main() {
 	}
 
 	serverURI := fmt.Sprintf("%s:%d", *serverAddr, *serverPort)
-	server := &http.Server{
+	srv := &http.Server{
 		Addr:         serverURI,
 		ErrorLog:     errLog,
 		Handler:      app.routes(),
@@ -38,4 +38,8 @@ func main() {
 		ReadTimeout:  5 * time.Second,
 		WriteTimeout: 10 * time.Second,
 	}
+
+	infoLog.Printf("服务运行于 %s", serverURI)
+	err := srv.ListenAndServe()
+	errLog.Fatal(err)
 }
