@@ -1,4 +1,4 @@
-module go-mongodb-demo/users
+module github.com/zztmamg/go-mongodb-demo/users
 
 go 1.17
 

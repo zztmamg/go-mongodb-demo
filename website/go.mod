@@ -1,4 +1,4 @@
-module go-mongodb-demo/website
+module github.com/zztmamg/go-mongodb-demo/website
 
 go 1.17
 
